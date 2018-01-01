@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+
+<title> Student Survey</title>
+ 
+ <style>
+
+body {background-color: #eeeeee} 
+ h1 {color: blue}
+ 
+.anyelement {color: green;
+              font-size: 20pt}
+.imgpos {position: fixed;
+          bottom: 0px;
+          right: 0px;
+          width: 100px;
+          height: 100px
+          }
+.namepos {position:fixed;
+           top: 0px;
+           right: 0px;
+          }      
+ h2 {text-shadow: -4px 4px 6px green}
+  
+ 
+ 
+ 
+ </style>
+
+</h:head>	
+
+<h:body>
+
+<h:form>
+
+<h:panelGrid columns="3">
+FirstName: <p:inputText id="fname" value="#{surveyBean.firstname}" >
+
+</p:inputText>
+
+<p:message for="fname"/>
+
+
+LastName: <p:inputText id="lname" value="#{surveyBean.lastname}" > 
+</p:inputText> 
+
+<p:message for="lname"/>
+
+
+City: <p:inputText id="city" value="#{surveyBean.city}"> 
+ </p:inputText>
+ <p:message for="city"/>
+
+State: <p:inputText id="state" value="#{surveyBean.state}"> 
+  </p:inputText>
+ <p:message for="state"/>
+
+</h:panelGrid>
+
+<h:panelGrid columns="2">
+<p:commandButton value="Submit" action="#{surveyBean.search}" ajax="false" autoUpdate="true"> </p:commandButton>
+<p:commandButton value="Reset" action="#{surveyBean.resetsearch}" ajax="false"> </p:commandButton>
+</h:panelGrid>
+
+</h:form>
+
+<h:outputLink value="Welcome.xhtml">Return to Welcome Page</h:outputLink>
+</h:body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+<title> Student Survey</title>
+ 
+ <style>
+
+body {background-color: #eeeeee} 
+ h1 {color: blue}
+ 
+.anyelement {color: green;
+              font-size: 20pt}
+.imgpos {position: fixed;
+          bottom: 0px;
+          right: 0px;
+          width: 100px;
+          height: 100px
+          }
+.namepos {position:fixed;
+           top: 0px;
+           right: 0px;
+          }      
+ h2 {text-shadow: -4px 4px 6px green}
+  
+ 
+ 
+ 
+ </style>
+
+</h:head>
+
+<h:body>
+
+<h1 class="namepos"> KRANTHI </h1>
+
+<h2 class="heading"> STUDENT INFORMATION </h2>
+
+<a href = "http://www.gmu.edu"> <img src = "gmu.jpg" id="logo" title="Please visit http://www.gmu.edu for more information" class="imgpos" alt = "GMU Website"/> </a>
+
+<h:form>
+
+<h:panelGrid columns="3">
+
+FirstName: <p:inputText id="fname" value="#{surveyBean.firstname}" required="true"
+ requiredMessage="You must enter Your FirstName" validatorMessage="First-Name shouldn't be longer than 15 characters and should contain only alphabets, should not end with spaces."> 
+ <f:validateRegex  pattern = "^([a-zA-Z]+)([a-zA-Z\s]*)([a-zA-Z]+)$"/>
+ <f:validateLength  maximum="15"/> 
+
+</p:inputText>
+
+<p:message for="fname"/>
+
+LastName: <p:inputText id="lname" value="#{surveyBean.lastname}" required="true"
+ requiredMessage="You must enter Your LastName" validatorMessage="Last-Name shouldn't be longer than 15 characters and should contain only alphabets, should not end with spaces.">
+ <f:validateRegex  pattern = "^([a-zA-Z]+)([a-zA-Z\s]*)([a-zA-Z]+)$"/>
+ <f:validateLength  maximum="15"/> 
+</p:inputText> 
+
+<p:message for="lname"/>
+
+Street-address: <p:inputText id="staddress" value="#{surveyBean.street}" required="true"
+ requiredMessage="You must enter Your Streetaddress" validatorMessage="You must enter a valid Address"> 
+  <f:validateRegex  pattern = "[a-zA-Z0-9\s]*"/>
+ <f:validateLength  maximum="30"/> 
+ </p:inputText>
+ <p:message for="staddress"/>
+
+City: <p:inputText id="city" value="#{surveyBean.city}" required="true" validatorMessage="City shouldn't be longer than 15 characters and should contain only alphabets, should not end with spaces."
+ requiredMessage="You must enter the City"> 
+ <f:validateRegex  pattern = "^([a-zA-Z]+)([a-zA-Z\s]*)([a-zA-Z]+)$"/>
+ <f:validateLength minimum="2" maximum="15"/> 
+ </p:inputText>
+ <p:message for="city"/>
+
+State: <p:inputText id="state" value="#{surveyBean.state}" required="true" validatorMessage="State shouldn't be longer than 15 characters and should contain only alphabets, should not end with spaces."
+ requiredMessage="You must enter the State"> 
+ <f:validateRegex  pattern = "^([a-zA-Z]+)([a-zA-Z\s]*)([a-zA-Z]+)$"/>
+ <f:validateLength minimum="2" maximum="15"/> 
+ </p:inputText>
+ <p:message for="state"/>
+
+Zip: <p:inputText  id="zip" value="#{surveyBean.zip}" required="true"
+ requiredMessage="You must enter the Zip" validatorMessage="Zip-Code must contain exactly 5 digits">
+  <f:validateRegex  pattern = "[0-9]*"/> 
+  <f:validateLength minimum="5" maximum="5"/> 
+  <f:ajax render="city state" execute="zip"/>
+  </p:inputText>
+  <p:message for="zip"/>
+
+Telephone:<p:inputMask mask="(999) 999-9999"
+value="#{surveyBean.telephone}"
+required="true" id="phone"
+requiredMessage="Missing or incomplete
+phone number"/>
+<p:message for="phone"/>
+
+<!-- <p:inputText id="phone" value="#{surveyBean.telephone}" required="true"
+ requiredMessage="You must enter a Phone number" validatorMessage="Number must be in the format (xxx)-xxx-xxxx"> 
+ <f:validateRegex  pattern = "^\([0-9]{3}\)\-[0-9]{3}\-[0-9]{4}$"/> 
+ </p:inputText>
+ <p:message for="phone"/> -->
+
+E-mail: <p:inputText id="email" value="#{surveyBean.email}" required="true"
+ requiredMessage="You must enter an e-mail" validatorMessage="You must enter a valid e-mail"> 
+ <f:validateRegex  pattern = "^[a-zA-Z]([a-zA-Z0-9_\-])+([\.][a-zA-Z0-9_]+)*\@((([a-zA-Z0-9\-])+\.){1,2})([a-zA-Z0-9]{2,40})$"/>
+ </p:inputText>
+ <p:message for="email"/>
+
+</h:panelGrid>
+<br/>
+
+
+Interests:<p:selectOneRadio id="interest" value="#{surveyBean.interest}">
+
+<f:selectItem itemValue="friends" itemLabel="Friends"/>
+
+<f:selectItem itemValue="internet" itemLabel="Internet"/>
+
+<f:selectItem itemValue="television" itemLabel="Television"/>
+
+<f:selectItem itemValue="other" itemLabel="Other"/>
+
+</p:selectOneRadio>
+
+<br/>
+
+Most-Liked on Campus<p:selectManyCheckbox id ="Most-liked" value="#{surveyBean.mostliked}">
+   	<f:selectItem itemValue="students" itemLabel="Students" />
+   	<f:selectItem itemValue="location" itemLabel="Location" />
+   	<f:selectItem itemValue="sports" itemLabel="Sports" />
+   	<f:selectItem itemValue="campus" itemLabel="Campus" />
+   	<f:selectItem itemValue="dorm-rooms" itemLabel="Dorm-Rooms" />
+</p:selectManyCheckbox>
+
+<br/>
+
+
+Recommendation:<p:autoComplete value="#{surveyBean.likelihood}"
+completeMethod="#{surveyBean.selections}"
+minQueryLength="1"
+queryDelay="300"
+id = "auto"/>
+<p:message for="auto"/>
+
+
+
+<!--  <p:selectOneMenu id="likelihood" value="#{surveyBean.likelihood}">
+<f:selectItem itemValue="verylikely" itemLabel="Verylikely"/>
+<f:selectItem itemValue="likely" itemLabel="Likely"/>
+<f:selectItem itemValue="unlikely" itemLabel="Unlikely"/>
+</p:selectOneMenu>
+-->
+
+<br/>
+<br/>
+
+
+Raffle (enter atleast ten comma separated numbers ranging from 1 through 100 in this field): 
+<p:inputText value = "#{surveyBean.raffle}" validatorMessage="There must be atleast 10 comma seperated numbers and all of them between 1 and 100 (including both)" id="raffle" >
+<f:validateRegex  pattern = "^(100|[1-9]|[1-9][0-9])(,(100|[1-9]|[1-9][0-9])){9,}$"/>
+</p:inputText>
+<p:message for="raffle"/>
+
+
+<br/>
+<br/>
+
+
+Comments:<p:inputText value="#{surveyBean.comments}" validatorMessage="There must be only alphanumeric characters" id="comments" >
+<f:validateRegex  pattern = "[a-zA-Z0-9\s]*"/>
+</p:inputText>
+<p:message for="comments"/>
+<br/>
+<br/>
+
+
+Date-of-Survey:<p:calendar value="#{surveyBean.dateofsurvey}"  id="dateofsurvey" mode = "popup" showButtonPanel="true" 
+required="true" requiredMessage="You must enter the date-of-survey"/>
+<p:message for="dateofsurvey"/>
+
+<!--   <h:inputText value="#{surveyBean.dateofsurvey}"  required="true" id="dateofsurvey"
+requiredMessage="You must enter the date-of-survey" validatorMessage="Date must be in the format mm/dd/yyyy"> 
+<f:validateRegex  pattern = "^(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])/((?:19|20)\d\d)$"/>
+</h:inputText> 
+-->
+
+<br/>
+<br/>
+
+Semester start-date:<p:calendar value="#{surveyBean.start_date}" required="true"
+requiredMessage="You must enter the start-date" id="start-date" mode = "popup" showButtonPanel="true"/>
+<p:messages for="start-date"/>
+
+<br/>
+<br/>
+
+<h:panelGrid columns="2">
+<p:commandButton value="Submit" action="#{surveyBean.Actionmethod}" ajax="false" autoUpdate="true"> </p:commandButton>
+<p:commandButton value="Reset" action="#{surveyBean.reset}" ajax="false"> </p:commandButton>
+</h:panelGrid>
+</h:form>
+
+</h:body>
+</html>

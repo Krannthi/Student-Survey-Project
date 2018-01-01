@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+
+<h1>Thank you for Completing the Survey <h:outputText value="#{surveyBean.firstname} " /> <h:outputText value="#{surveyBean.lastname}" /> </h1>
+<h1>You are a winner of two movie tickets !</h1>
+<br/>
+<br/>
+
+<h2>The mean of the data entered in the Raffle is: <h:outputText value="#{surveyBean.winningResult.mean}" /> </h2>
+<br/>
+<h2>The Standard-deviation of the data entered in the Raffle is: <h:outputText value="#{surveyBean.winningResult.standarddeviation}" /> </h2>
+
+<br/>
+<br/>
+<h:form>
+<h:commandButton value="Visited Students" action = "ListSurvey" />
+</h:form>
+<h:outputLink value="Welcome.xhtml">Return to Welcome Page</h:outputLink>
+</h:body>
+</html>

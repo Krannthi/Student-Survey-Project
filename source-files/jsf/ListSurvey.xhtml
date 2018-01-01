@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+<style>
+
+.order-table{
+	border-collapse:collapse;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
+</style>
+</h:head>
+
+<h:body>
+
+<h1> Page-Visitors </h1>
+
+<h:dataTable value = "#{surveyBean.studentinfo}" var="Student" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row" border="1">
+
+ <h:column>    				
+      <f:facet name="header">Firstname</f:facet>    				
+      #{Student.firstname}
+ </h:column>
+ 
+ <h:column>    				
+      <f:facet name="header">Lastname</f:facet>    				
+      #{Student.lastname}
+ </h:column>
+   
+ <h:column>    				
+      <f:facet name="header">Telephone</f:facet>    				
+      #{Student.telephone}
+ </h:column>
+   
+ <h:column>    				
+      <f:facet name="header">E-mail</f:facet>    				
+      #{Student.email}
+ </h:column>
+
+    <h:column>    				
+      <f:facet name="header">Street-address</f:facet>    				
+      #{Student.street}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">City</f:facet>    				
+      #{Student.city}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">State</f:facet>    				
+      #{Student.state}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">Zip</f:facet>    				
+      #{Student.zip}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">Interests</f:facet>    				
+      #{Student.interest}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">Most-liked</f:facet>    				
+      #{Student.mostliked}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">Recommendation</f:facet>    				
+      #{Student.likelihood}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">Raffle</f:facet>    				
+      #{Student.raffle}
+   </h:column>
+   
+     <h:column>    				
+      <f:facet name="header">Comments</f:facet>    				
+      #{Student.comments}
+   </h:column>
+   
+  <h:column>    				
+   <f:facet name="header">Date-of-Survey</f:facet>    				
+     #{Student.dateofsurvey}
+  </h:column>
+  
+   <h:column>    				
+   <f:facet name="header">Semester Start-Date</f:facet>    				
+     #{Student.start_date}
+   </h:column>
+   
+</h:dataTable>
+
+<h:outputLink value="Welcome.xhtml">Return to Welcome Page</h:outputLink>
+
+</h:body>
+
+</html>
